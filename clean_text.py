@@ -5,6 +5,11 @@ from string import digits
 import collections
 from langdetect import detect
 
+import nltk
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+
 nltk.download('punkt')
 nltk.download('stopwords')
 
@@ -22,20 +27,17 @@ def clean_all_text(text_list):
     
     '''cleans all text and creates new column in dataframe'''
     
-    temp_docs = temp_df['text'].values
-    temp_docs = temp_docs.tolist()
-    
     doc_list = []
-    for doc in text_list:
+    for word in text_list:
 
         doc_list = []
 
-        for doc in text_list:
-            doc_list.append(get_show_text(doc))
+        for word in text_list:
+            doc_list.append(get_show_text(word))
     return doc_list
 
 
-def clean_text(doc_string):
+def clean_text(doc):
     '''cleans and lemmatizes a string by removing punc, characters, digits, and len(words) < 3'''
     
     stop_words = stopwords.words('english')
@@ -63,8 +65,8 @@ def clean_text(doc_string):
     cleaned = str(g)
     doc = word_tokenize(cleaned)
     
-    for word in doc:
-        doc_temp = wordnet_lemmatizer.lemmatize(word)
+    for val in doc:
+        doc_temp = wordnet_lemmatizer.lemmatize(val)
         lemmatized.append(doc_temp)
     doc = ' '.join(lemmatized)
     
@@ -99,9 +101,10 @@ def lang_detect(doc_series):
 
 if __name__=="__main__":
     
-    temp_df = pd.read_csv('data/cc_head_text', encoding='utf-8')
+    temp_df = pd.read_csv('data/test10.csv', encoding='utf-8')
     temp = temp_df['text'].values
     temp = temp.tolist()
+    
     docs_list = clean_all_text(temp)
     cleaned_list = clean_and_return(docs_list)
     temp_df['cleaned'] = cleaned_list
@@ -112,5 +115,5 @@ if __name__=="__main__":
     english = temp_df[temp_df['language'] == 'en']
     spanish = temp_df[temp_df['language'] == 'es']
     
-    english.to_csv('data/cc_20k_english.csv', encoding='utf-8', index=False)
-    spanish.to_csv('data/cc_20k_spanish.csv', encoding='utf-8', index=False)
+    english.to_csv('data/testenglish.csv', encoding='utf-8', index=False)
+    spanish.to_csv('data/testspanish.csv', encoding='utf-8', index=False)
