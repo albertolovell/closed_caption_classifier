@@ -3,11 +3,10 @@ import pandas as pd
 import string
 from string import digits
 import collections
+from langdetect import detect
 
 nltk.download('punkt')
 nltk.download('stopwords')
-
-
 
 
 
@@ -80,6 +79,24 @@ def clean_and_return(docs_list):
         
     return docs
 
+
+def lang_detect(doc_series):
+    
+    lang = []
+    for x in doc_series:
+        eng = 'en'
+        span = 'es'
+
+        try:
+            if detect(x) == eng:
+                lang.append(eng)
+            else:
+                lang.append(span)
+        except:
+            lang.append(None)
+            
+    return lang
+
 if __name__=="__main__":
     
     temp_df = pd.read_csv('data/cc_head_text', encoding='utf-8')
@@ -88,4 +105,6 @@ if __name__=="__main__":
     docs_list = clean_all_text(temp)
     cleaned_list = clean_and_return(docs_list)
     temp_df['cleaned'] = cleaned_list
+    doc_series = pd.Series(temp_df['cleaned'].values)
+    
     temp_df.to_csv('data/cc_4000_text_cleaned_spanish.csv', encoding='utf-8', index=False)
