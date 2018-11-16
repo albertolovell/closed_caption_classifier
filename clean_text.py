@@ -105,6 +105,12 @@ if __name__=="__main__":
     docs_list = clean_all_text(temp)
     cleaned_list = clean_and_return(docs_list)
     temp_df['cleaned'] = cleaned_list
-    doc_series = pd.Series(temp_df['cleaned'].values)
     
-    temp_df.to_csv('data/cc_4000_text_cleaned_spanish.csv', encoding='utf-8', index=False)
+    doc_series = pd.Series(temp_df['cleaned'].values)
+    language = lang_detect(doc_series)
+    temp_df['language'] = language
+    english = temp_df[temp_df['language'] == 'en']
+    spanish = temp_df[temp_df['language'] == 'es']
+    
+    elglish.to_csv('data/cc_20k_english.csv', encoding='utf-8', index=False)
+    spanish.to_csv('data/cc_20k_spanish.csv', encoding='utf-8', index=False)
