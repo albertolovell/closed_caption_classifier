@@ -112,5 +112,5 @@ if __name__=="__main__":
     english = temp_df[temp_df['language'] == 'en']
     spanish = temp_df[temp_df['language'] == 'es']
     
-    elglish.to_csv('data/cc_20k_english.csv', encoding='utf-8', index=False)
+    english.to_csv('data/cc_20k_english.csv', encoding='utf-8', index=False)
     spanish.to_csv('data/cc_20k_spanish.csv', encoding='utf-8', index=False)
