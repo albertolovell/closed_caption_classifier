@@ -23,7 +23,6 @@ def clean_all_text(text_list):
     
     '''cleans all text and creates new column in dataframe'''
     
-    temp_df = pd.read_csv('data/cc_head_text', encoding='utf-8')
     temp_docs = temp_df['text'].values
     temp_docs = temp_docs.tolist()
     
@@ -39,8 +38,6 @@ def clean_all_text(text_list):
 
 def clean_text(doc_string):
     '''cleans and lemmatizes a string by removing punc, characters, digits, and len(words) < 3'''
-    
-    
     
     stop_words = stopwords.words('english')
     punct = ('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~♪¿’')
@@ -74,12 +71,21 @@ def clean_text(doc_string):
     
     return doc
 
-
-def clean_and_return(doc_list):
+def clean_and_return(docs_list):
     
-    
-    f_docs = []
-    for cc in f_text:
+    docs = []
+    for cc in docs_list:
         cleaned_temp = clean_text(cc)
-        f_docs.append(cleaned_temp)
-    f_docs[0]
+        docs.append(cleaned_temp)
+        
+    return docs
+
+if __name__=="__main__":
+    
+    temp_df = pd.read_csv('data/cc_head_text', encoding='utf-8')
+    temp = temp_df['text'].values
+    temp = temp.tolist()
+    docs_list = clean_all_text(temp)
+    cleaned_list = clean_and_return(docs_list)
+    temp_df['cleaned'] = cleaned_list
+    temp_df.to_csv('data/cc_4000_text_cleaned_spanish.csv', encoding='utf-8', index=False)
