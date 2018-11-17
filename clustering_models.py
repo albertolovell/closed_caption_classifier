@@ -39,6 +39,8 @@ def svd(doc_list):
     
 def find_elbow(doc_list):
     
+    clf = svd(doc_list)
+    
     distortions = []
     K = range(1,10)
     for k in K:
