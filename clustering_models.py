@@ -23,7 +23,9 @@ def vectorize_text(doc_list):
     
     vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'), lowercase=True) 
     tfidf_model = vectorizer.fit_transform(doc_list)
+    
     return tfidf_model
+
     
 def svd(doc_list):
     
@@ -33,6 +35,7 @@ def svd(doc_list):
     clf = svd.fit_transform(model) 
     
     return clf
+
     
 def find_elbow(doc_list):
     
@@ -43,10 +46,28 @@ def find_elbow(doc_list):
         kmeanModel.fit(clf)
         distortions.append(sum(np.min(cdist(clf, kmeanModel.cluster_centers_, 'euclidean'), axis=1)) / clf.shape[0])
 
-    # Plot the elbow
     plt.plot(K, distortions, 'bx-')
     plt.xlabel('k')
     plt.ylabel('Distortion')
     plt.title('The Elbow Method showing the optimal k')
     plt.show()
 
+def KMeans_PCA_plot(doc_list, num_clusters=3, n_jobs=4):
+    
+    clf = svd(doc_list)
+    
+    km = KMeans(n_clusters=num_clusters, n_jobs=4) 
+    km.fit(clf)
+
+    clusters = km.labels_.tolist()
+
+    pca = PCA(n_components=2).fit(clf)
+    data2D = pca.transform(clf)
+    plt.scatter(data2D[:,0], data2D[:,1], c=clusters, alpha=0.1)
+
+    centers2D = pca.transform(km.cluster_centers_)
+
+    plt.scatter(centers2D[:,0], centers2D[:,1], 
+                marker='x', s=200, linewidths=3, c='r')
+    plt.title('(SVD REDUCED) Kmeans Clusters')
+    plt.show() 
