@@ -85,4 +85,4 @@ def scrape_from_url(cycles):
         
 if __name__ == "__main__":
     
-    scrape_from_url(30)
+    scrape_from_url(40)

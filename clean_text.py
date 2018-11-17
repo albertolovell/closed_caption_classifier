@@ -101,7 +101,7 @@ def lang_detect(doc_series):
 
 if __name__=="__main__":
     
-    temp_df = pd.read_csv('data/##cc_head_text##.csv', encoding='utf-8')
+    temp_df = pd.read_csv('data/cc_head_text.csv', encoding='utf-8')
     temp = temp_df['text'].values
     temp = temp.tolist()
     
@@ -115,5 +115,5 @@ if __name__=="__main__":
     english = temp_df[temp_df['language'] == 'en']
     spanish = temp_df[temp_df['language'] == 'es']
     
-    english.to_csv('data/testenglish.csv', encoding='utf-8', index=False)
-    spanish.to_csv('data/testspanish.csv', encoding='utf-8', index=False)
+    english.to_csv('data/clean_english.csv', encoding='utf-8', index=False)
+    spanish.to_csv('data/clean_spanish.csv', encoding='utf-8', index=False)
