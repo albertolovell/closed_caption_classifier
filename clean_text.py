@@ -101,7 +101,7 @@ def lang_detect(doc_series):
 
 if __name__=="__main__":
     
-    temp_df = pd.read_csv('data/test10.csv', encoding='utf-8')
+    temp_df = pd.read_csv('data/##cc_head_text##.csv', encoding='utf-8')
     temp = temp_df['text'].values
     temp = temp.tolist()
     
