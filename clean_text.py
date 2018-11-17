@@ -29,9 +29,8 @@ def clean_all_text(text_list):
     
     doc_list = []
     for word in text_list:
-
-        for word in text_list:
-            doc_list.append(get_show_text(word))
+        doc_list.append(get_show_text(word))
+        
     return doc_list
 
 
