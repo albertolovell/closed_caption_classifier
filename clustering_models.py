@@ -12,6 +12,7 @@ import cc_pipeline as P
 import time
 import random
 import pickle
+from collections import Counter
 
 #sentiment and language
 import nltk
@@ -24,6 +25,7 @@ from langdetect import detect
 from gensim.models import Word2Vec
 from gensim import corpora
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+from spacy import displacy
 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer, TfidfVectorizer
 from sklearn.decomposition import PCA, KernelPCA
