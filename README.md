@@ -1,5 +1,5 @@
 # closed_caption_classifier
-Classification of TV closed-caption data
+Classification of TV closed-caption data (in progress)
 
 Overview:
 Sentiment analysis and unsupervised classification of TV shows and top brands based on closed caption text.
