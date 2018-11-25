@@ -1,6 +1,8 @@
 # closed_caption_classifier
 Classification of TV closed-caption data (in progress)
 
+Youtube: https://www.youtube.com/watch?v=my8ZuVVUFoI
+
 Overview:
 Sentiment analysis and unsupervised classification of TV shows and top brands based on closed caption text.
 
