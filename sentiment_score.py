@@ -57,12 +57,13 @@ def get_sentiment_sentence(sent_tok, brands):
     analyser = SentimentIntensityAnalyzer()
     scores = []
     
-    for brand in brands:
-        for sent in sent_tok:
-            if brand in sent:
-                score = list(dict.items(analyser.polarity_scores(sent)))
-                scores.append([brand, score])
-                
+    for sents in sent_tok:
+        for brand in brands:
+            for sent in sents:
+                if brand in sent:
+                    score = list(dict.items(analyser.polarity_scores(sent)))
+                    scores.append([brand, score])
+            
     return scores
 
 
@@ -81,8 +82,8 @@ if __name__=="__main__":
         pickle.dump(sent_tok, f)
         
     sentiment = get_sentiment_sentence(sent_tok, brands)
-    df['sentiment'] = sentiment
-    
+    with open ('data/sentiments.pkl', 'wb') as f:
+        pickle.dump(sentiment, f)
     
 
 
