@@ -260,3 +260,6 @@ def pipeline_grid_search(X_train, y_train, pipeline, params, scoring):
     grid.fit(X_train, y_train)
 
     return grid
+
+
+#implement inheritance and clean up codebase

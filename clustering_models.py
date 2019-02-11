@@ -199,45 +199,24 @@ def plot_topics(text, components=5):
     
 def plot_wordcloud(text_string):
     
-    # Create and generate a word cloud image:
     wordcloud = WordCloud().generate(text_string)
 
-    # Display the generated image:
     plt.figure(figsize=(10, 30))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.title('Topic 0')
     plt.axis("off")
     plt.show()
     
-    
-    #OR blue/white
-    
-    all_words = []
-    for line in df_paulry['no_pauls']: # try 'tokens'
-        all_words.extend(line)
 
-        # create a word frequency dictionary
-        wordfreq = Counter(all_words)
-        # draw a Word Cloud with word frequencies
-        wordcloud = WordCloud(width=900,
-                              height=500,
-                              max_words=500,
-                              max_font_size=100,
-                              relative_scaling=0.5,
-                              colormap='Blues', normalize_plurals=True).generate_from_frequencies(wordfreq)
-        plt.figure(figsize=(17,14))
-        plt.imshow(wordcloud, interpolation='bilinear')
-        plt.axis("off")
-        plt.show()
-
-    
     
     
     
 if __name__=="__main__":
     
-    df = pd.read_csv('data/testenglish.csv', encoding='utf-8')
+    df = pd.read_csv('filepath/filename', encoding='utf-8')
     text = df['cleaned'].values
     text = text.tolist()
+    
+    #pipeline moving forward
     
     
