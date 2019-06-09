@@ -10,7 +10,7 @@ The scope of this project is to create a clustering model for categorization of 
 
 The main tools used in this project were AWS (EC2), Jupyter Notebook, and Python, specifically the scikit learn library, spaCy NLP library, langdetect for language separation, and pyLDAviz visualization library.
 
-### Scraping & Cleaning:
+### Workflow:
 
 Caption data was scraped from text files stored on an AWS S3 bucket using Python’s Requests library and a script was created using User:Agent and sleep timing to passively scrape files to prevent IP blocking from AWS.  
 
