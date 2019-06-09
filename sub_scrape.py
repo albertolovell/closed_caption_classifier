@@ -38,11 +38,12 @@ user_agent_list = [
 
 
 def scrape_text(series):
-    
+
     #use pd.series instead moving forward
+
     text = []
     for link in series:
-        
+
         try:
             req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
             webpage = urlopen(req).read()
@@ -50,17 +51,19 @@ def scrape_text(series):
             text.append(webpage)
         except SocketError as e:
             if e.errno != errno.ECONNRESET:
-                raise # Not error we are looking for
-            pass # Handle error here.
-        
+                raise
+            pass
+
     return text
 
 def scrape_from_url(cycles):
-    
+
     for i in range(cycles):
+
+        #sleep timer to prevent lockout
         
         time.sleep(900)
-        
+
         from_df = pd.read_csv('data/cc_recent.csv', encoding='utf-8')
         temp_df = from_df.head(1000)
 
@@ -82,7 +85,7 @@ def scrape_from_url(cycles):
         from_df=None
         text_url_series=None
         extracts=None
-        
+
 if __name__ == "__main__":
-    
+
     scrape_from_url(40)
